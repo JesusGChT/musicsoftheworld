@@ -16,25 +16,19 @@
           "name": "Tajaraste",
           "origin": "Danza guanche · Origen prehispánico",
           "description": "La danza más antigua de Canarias, de probable origen guanche. Llegó a las cortes europeas del Renacimiento y fue mencionada por Cervantes y Lope de Vega. En Tenerife vive con fuerza en El Amparo, donde los bailadores forman una rueda bajo el pórtico de la iglesia con pequeños saltos y taconeos.",
-          "audio_url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/9/94/Tajaraste.ogg/Tajaraste.ogg.mp3",
-          "audio_label": "Tajaraste · grabación tradicional",
-          "audio_fallback": "https://www.youtube.com/results?search_query=tajaraste+tenerife+folklore+tradicional"
+          "youtube_search": "tajaraste tenerife folklore tradicional"
         },
         {
           "name": "Folía canaria",
           "origin": "Danza cortesana · Llegada en el s. XVI",
           "description": "Llegó de Portugal y Galicia en el siglo XVI. En Canarias se convirtió en una danza amorosa de gran elegancia: el hombre avanza, la mujer retrocede rechazándolo, luego se reconcilian. Los Sabandeños la inmortalizaron con sus Folías de la Libertad.",
-          "audio_url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/1e/Folia_canaria.ogg/Folia_canaria.ogg.mp3",
-          "audio_label": "Folía canaria · grabación tradicional",
-          "audio_fallback": "https://www.youtube.com/results?search_query=folias+canarias+sabandeños+tradicional"
+          "youtube_search": "folias canarias sabandeños tradicional"
         },
         {
           "name": "Isa",
           "origin": "Baile festivo · Variante canaria de la jota",
           "description": "El baile más alegre y popular del archipiélago. La isa tinerfeña es la más formal y preciosista: cuadros, corros, cadenas y cambios de pareja con gran coordinación. Ritmo ternario vivo, canto a varias voces. El timple marca el compás.",
-          "audio_url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/f/f6/Isa_canaria.ogg/Isa_canaria.ogg.mp3",
-          "audio_label": "Isa canaria · grabación tradicional",
-          "audio_fallback": "https://www.youtube.com/results?search_query=isa+canaria+folklore+tenerife+tradicional"
+          "youtube_search": "isa canaria folklore tenerife tradicional"
         }
       ],
       "instruments": [
@@ -42,20 +36,18 @@
           "name": "Timple",
           "origin": "Cordófono · 5 cuerdas · Espalda abombada · Canarias",
           "description": "Pequeña guitarra de cinco cuerdas con la espalda <em>abombada</em> hacia fuera — el «camellito sonoro». Sonido agudo y muy proyectado. Instrumento emblemático de las islas, protagonista de las parrandas. Benito Cabrera lo llevó al Carnegie Hall de Nueva York en 2009.",
-          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Canary_Islands_Timple_arched_back.jpg/300px-Canary_Islands_Timple_arched_back.jpg",
-          "audio_url": "https://www3.gobiernodecanarias.org/medusa/mediateca/ecoescuela/wp-content/uploads/sites/2/2013/11/Timple.mp3",
-          "audio_label": "Sonido del timple · Gobierno de Canarias"
+          "commons_image": "Canary_Islands_Timple.jpg",
+          "youtube_search": "timple canario solo instrumento tradicional"
         },
         {
           "name": "Chácaras",
           "origin": "Idiófono · Percusión de madera o hueso · Tenerife y La Gomera",
           "description": "Percusión de madera o hueso, similar a las castañuelas pero más grandes y con cámara de resonancia interior. La chácara <em>macho</em> (grave) marca el pulso; la <em>hembra</em> (aguda) repiquetea. Acompañan el tajaraste desde la época guanche.",
-          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Chacaras_de_madera_de_La_Gomera.jpg/300px-Chacaras_de_madera_de_La_Gomera.jpg",
-          "audio_url": "",
-          "audio_label": ""
+          "commons_image": "Chacaras_de_madera_de_La_Gomera.jpg",
+          "youtube_search": "chácaras canarias tajaraste percusión folklore"
         }
       ],
-      "hero_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Teide_National_Park_Tenerife.jpg/1200px-Teide_National_Park_Tenerife.jpg",
+      "hero_wikipedia": "Parque nacional del Teide",
       "travel_tip": "Las Fiestas del Cristo de La Laguna en septiembre y las romerías de verano son los mejores momentos para escuchar música tradicional en vivo."
     }
   ]

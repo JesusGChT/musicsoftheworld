@@ -310,3 +310,27 @@ html, body {
   70%  { transform: scale(1.8); opacity: 0; }
   100% { transform: scale(1.8); opacity: 0; }
 }
+
+/* ── REPRODUCTOR DE AUDIO ── */
+.audio-player {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--sand); border-radius: 12px; padding: 13px 16px;
+}
+.audio-play-btn {
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  background: var(--terra); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, transform .1s; box-shadow: 0 2px 8px rgba(196,98,42,.3);
+}
+.audio-play-btn:hover { background: var(--amber); }
+.audio-play-btn:active { transform: scale(.93); }
+.audio-info { flex: 1; min-width: 0; }
+.audio-track-name { font-size: var(--fs-xs); font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.audio-progress-wrap { width: 100%; }
+.audio-bar-bg {
+  height: 4px; background: rgba(0,0,0,.1); border-radius: 2px; overflow: hidden;
+}
+.audio-bar-fill {
+  height: 100%; width: 0%; background: var(--terra); border-radius: 2px;
+  transition: width .1s linear;
+}
