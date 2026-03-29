@@ -284,3 +284,29 @@ html, body {
   font-size: 9px !important; border-radius: 6px 0 0 0 !important;
 }
 .leaflet-control-attribution a { color: rgba(255,255,255,.3) !important; }
+
+/* ── REPRODUCTOR DE AUDIO ── */
+.audio-player {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--sand); border-radius: 10px;
+  padding: 10px 13px; margin-top: .6rem;
+}
+.play-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--terra); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: background .15s, transform .1s;
+}
+.play-btn:hover { background: var(--amber); }
+.play-btn:active { transform: scale(.92); }
+.audio-info { flex: 1; min-width: 0; }
+.audio-label { font-size: var(--fs-xs); color: var(--mist); font-style: italic; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.audio-progress { height: 3px; background: rgba(0,0,0,.1); border-radius: 2px; overflow: hidden; }
+.audio-bar { height: 100%; background: var(--terra); width: 0%; border-radius: 2px; transition: width .1s linear; }
+
+/* Animación pulso marcador */
+@keyframes mpulse {
+  0%   { transform: scale(1); opacity: .5; }
+  70%  { transform: scale(1.8); opacity: 0; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
