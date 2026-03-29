@@ -15,35 +15,39 @@
         {
           "name": "Tajaraste",
           "origin": "Danza guanche · Origen prehispánico",
-          "description": "La danza más antigua de Canarias, de probable origen guanche. Llegó a las cortes europeas del Renacimiento y fue mencionada por Cervantes y Lope de Vega. En Tenerife vive con fuerza en El Amparo (Icod de los Vinos), donde los bailadores forman una rueda bajo el pórtico de la iglesia.",
+          "description": "La danza más antigua de Canarias, de probable origen guanche. Llegó a las cortes europeas del Renacimiento y fue mencionada por Cervantes y Lope de Vega. En Tenerife vive con fuerza en El Amparo, donde los bailadores forman una rueda bajo el pórtico de la iglesia con pequeños saltos y taconeos.",
           "youtube_search": "tajaraste tenerife folklore tradicional"
         },
         {
           "name": "Folía canaria",
           "origin": "Danza cortesana · Llegada en el s. XVI",
-          "description": "Llegó de Portugal y Galicia en el siglo XVI. En Canarias se convirtió en danza amorosa de gran elegancia: el hombre avanza, la mujer retrocede rechazándolo, luego se reconcilian. Los Sabandeños la inmortalizaron con sus Folías de la Libertad.",
+          "description": "Llegó de Portugal y Galicia en el siglo XVI. En Canarias se convirtió en una danza amorosa de gran elegancia: el hombre avanza, la mujer retrocede rechazándolo, luego se reconcilian. Los Sabandeños la inmortalizaron con sus Folías de la Libertad.",
           "youtube_search": "folias canarias sabandeños tradicional"
         },
         {
           "name": "Isa",
           "origin": "Baile festivo · Variante canaria de la jota",
-          "description": "El baile más alegre y popular del archipiélago. Derivada de la jota aragonesa, la isa tinerfeña es la más formal y preciosista. Cuadros, corros, cadenas y cambios de pareja con gran coordinación. El timple marca el compás.",
+          "description": "El baile más alegre y popular del archipiélago. La isa tinerfeña es la más formal y preciosista: cuadros, corros, cadenas y cambios de pareja con gran coordinación. Ritmo ternario vivo, canto a varias voces. El timple marca el compás.",
           "youtube_search": "isa canaria folklore tenerife tradicional"
         }
       ],
       "instruments": [
         {
           "name": "Timple",
-          "description": "Pequeña guitarra de cinco cuerdas con la espalda abombada hacia fuera — el «camellito sonoro». Sonido agudo y muy proyectado. Instrumento emblemático de las islas, protagonista de las parrandas. Benito Cabrera lo llevó al Carnegie Hall de Nueva York en 2009.",
-          "wikipedia": "Timple"
+          "origin": "Cordófono · 5 cuerdas · Espalda abombada · Canarias",
+          "description": "Pequeña guitarra de cinco cuerdas con la espalda <em>abombada</em> hacia fuera — el «camellito sonoro». Sonido agudo y muy proyectado. Instrumento emblemático de las islas, protagonista de las parrandas. Benito Cabrera lo llevó al Carnegie Hall de Nueva York en 2009.",
+          "wikipedia": "Timple",
+          "commons_image": "Timple001.jpg"
         },
         {
           "name": "Chácaras",
-          "description": "Percusión de madera o hueso, similar a las castañuelas pero más grandes y con cámara de resonancia interior. La chácara macho (grave) marca el pulso; la hembra (aguda) repiquetea. Acompañan el tajaraste desde la época guanche.",
-          "wikipedia": "Chácaras"
+          "origin": "Idiófono · Percusión de madera o hueso · Tenerife y La Gomera",
+          "description": "Percusión de madera o hueso, similar a las castañuelas pero más grandes y con cámara de resonancia interior. La chácara <em>macho</em> (grave) marca el pulso; la <em>hembra</em> (aguda) repiquetea. Acompañan el tajaraste desde la época guanche.",
+          "wikipedia": "Chácaras",
+          "commons_image": "Chacaras_de_madera_de_La_Gomera.jpg"
         }
       ],
-      "hero_wikipedia": "Teide",
+      "hero_wikipedia": "Parque nacional del Teide",
       "travel_tip": "Las Fiestas del Cristo de La Laguna en septiembre y las romerías de verano son los mejores momentos para escuchar música tradicional en vivo."
     }
   ]
