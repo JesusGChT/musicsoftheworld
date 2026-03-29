@@ -1,3 +1,8 @@
+bash
+
+cat /home/claude/musicsoftheworld_v2/js/app.js
+Salida
+
 'use strict';
 
 let map, regionsData = [];
@@ -18,7 +23,7 @@ async function loadData() {
 
 function initMap() {
   map = L.map('map', {
-    center: [28.3, -15.5], zoom: 3,
+    center: [20, 0], zoom: 3,
     zoomControl: false, scrollWheelZoom: true,
     minZoom: 2, maxZoom: 16
   });
@@ -71,7 +76,7 @@ function buildRegionList() {
   });
 }
 
-window.openRegion = async function(idx) {
+window.openRegion = function(idx) {
   const region = regionsData[idx];
   if (!region) return;
   map.closePopup();
@@ -82,23 +87,18 @@ window.openRegion = async function(idx) {
   pc.className = 'p-content show';
   pc.scrollTop = 0;
 
+  // Hero — imagen local, siempre funciona
   const heroImg = document.getElementById('heroImg');
+  heroImg.src = region.hero_image;
   heroImg.style.opacity = '0';
-  heroImg.src = '';
+  heroImg.onload = () => {
+    heroImg.style.opacity = '1';
+    heroImg.style.transition = 'opacity .5s';
+  };
+
   document.getElementById('heroName').textContent = region.name;
-  document.getElementById('heroEye').textContent = `${region.country} · Música tradicional`;
+  document.getElementById('heroEye').textContent = region.country + ' · Música tradicional';
   document.getElementById('heroTagline').textContent = region.tagline;
-
-  loadWikiImage(region.hero_wikipedia, 'es', 900).then(url => {
-    if (url) {
-      heroImg.src = url;
-      heroImg.onload = () => {
-        heroImg.style.opacity = '1';
-        heroImg.style.transition = 'opacity .5s';
-      };
-    }
-  });
-
   document.getElementById('regionDesc').innerHTML = region.description;
 
   if (region.travel_tip) {
@@ -112,28 +112,6 @@ window.openRegion = async function(idx) {
   buildGenres(region);
 };
 
-/* Wikipedia API — para el hero */
-async function loadWikiImage(title, lang = 'es', size = 640) {
-  try {
-    const url = `https://${lang}.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(title)}&prop=pageimages&format=json&pithumbsize=${size}&origin=*`;
-    const d = await (await fetch(url)).json();
-    const page = Object.values(d.query.pages)[0];
-    return page?.thumbnail?.source || null;
-  } catch { return null; }
-}
-
-/* Wikimedia Commons API — para instrumentos por nombre exacto de archivo */
-async function loadCommonsImage(filename, size = 400) {
-  if (!filename) return null;
-  try {
-    const encoded = encodeURIComponent('File:' + filename);
-    const url = `https://commons.wikimedia.org/w/api.php?action=query&titles=${encoded}&prop=imageinfo&iiprop=url&iiurlwidth=${size}&format=json&origin=*`;
-    const d = await (await fetch(url)).json();
-    const page = Object.values(d.query.pages)[0];
-    return page?.imageinfo?.[0]?.thumburl || null;
-  } catch { return null; }
-}
-
 function buildInstruments(region) {
   const row = document.getElementById('instruRow');
   row.innerHTML = '';
@@ -146,25 +124,16 @@ function buildInstruments(region) {
   region.instruments.forEach(inst => {
     const btn = document.createElement('button');
     btn.className = 'instru-btn';
-    const thumbId = 'thumb_' + inst.name.replace(/\s/g,'_');
     btn.innerHTML = `
-      <div class="instru-img-wrap" id="${thumbId}">⏳</div>
+      <div class="instru-img-wrap">
+        <img src="${inst.image}" alt="${inst.name}" onerror="this.parentElement.textContent='🎵'"/>
+      </div>
       <div>
         <div class="instru-label">${inst.name}</div>
         <div class="instru-sub">Ver y escuchar</div>
       </div>`;
     btn.onclick = () => openInstrumentModal(inst);
     row.appendChild(btn);
-
-    loadCommonsImage(inst.commons_image, 150).then(url => {
-      const wrap = document.getElementById(thumbId);
-      if (!wrap) return;
-      if (url) {
-        wrap.innerHTML = `<img src="${url}" alt="${inst.name}"/>`;
-      } else {
-        wrap.textContent = '🎵';
-      }
-    });
   });
 }
 
@@ -206,38 +175,66 @@ window.toggleGenre = function(i) {
   if (!wasOpen) item.classList.add('open');
 };
 
-window.openInstrumentModal = async function(inst) {
-  const imgWrap = document.getElementById('modalImgWrap');
-  imgWrap.innerHTML = `<div style="width:100%;height:260px;background:var(--sand);display:flex;align-items:center;justify-content:center;color:#B0A898">Cargando imagen…</div>`;
+// Variable global para el audio activo
+let activeAudio = null;
 
-  loadCommonsImage(inst.commons_image, 600).then(url => {
-    if (url) {
-      imgWrap.innerHTML = `<img class="modal-img" src="${url}" alt="${inst.name}"/><div class="modal-img-cap">© Wikimedia Commons CC BY-SA</div>`;
-    } else {
-      imgWrap.innerHTML = `<div style="width:100%;height:260px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:3.5rem">🎵</div>`;
-    }
-  });
+window.openInstrumentModal = function(inst) {
+  // Parar audio anterior si hay uno
+  if (activeAudio) { activeAudio.pause(); activeAudio.currentTime = 0; activeAudio = null; }
+
+  // Imagen local — siempre funciona
+  document.getElementById('modalImgWrap').innerHTML = `
+    <img class="modal-img" src="${inst.image}" alt="${inst.name}"
+      onerror="this.parentElement.innerHTML='<div style=width:100%;height:260px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:3.5rem>🎵</div>'"/>
+    <div class="modal-img-cap">© Wikipedia · Wikimedia Commons CC BY-SA</div>`;
 
   document.getElementById('modalTitle').textContent = inst.name;
   document.getElementById('modalOrigin').textContent = inst.origin;
   document.getElementById('modalDesc').innerHTML = inst.description;
+
+  // Reproductor de audio real — archivo local
   document.getElementById('modalAudio').innerHTML = `
     <div class="modal-audio-label">Escuchar el instrumento</div>
-    <a class="yt-btn" href="https://www.youtube.com/results?search_query=${encodeURIComponent(inst.youtube_search)}" target="_blank">
-      <svg class="yt-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.05 0 12 0 12s0 3.95.5 5.81a3.02 3.02 0 002.12 2.14C4.47 20.5 12 20.5 12 20.5s7.53 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.95 24 12 24 12s0-3.95-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
-      Buscar «${inst.name}» en YouTube
-    </a>`;
+    <div style="background:var(--sand);border-radius:12px;padding:1rem">
+      <audio id="audioPlayer" controls style="width:100%;accent-color:var(--terra)">
+        <source src="${inst.audio}" type="audio/mpeg">
+      </audio>
+      <div style="font-size:10px;color:#B0A898;margin-top:.5rem;font-style:italic">${inst.audio_credit}</div>
+    </div>`;
+
   document.getElementById('modalOverlay').classList.add('show');
+
+  // Guardar referencia al audio
+  activeAudio = document.getElementById('audioPlayer');
 };
 
 window.closeModal = function() {
+  if (activeAudio) { activeAudio.pause(); activeAudio.currentTime = 0; activeAudio = null; }
   document.getElementById('modalOverlay').classList.remove('show');
 };
+
 window.handleOverlayClick = function(e) {
   if (e.target === document.getElementById('modalOverlay')) closeModal();
 };
+
 window.closePanel = function() {
+  if (activeAudio) { activeAudio.pause(); activeAudio.currentTime = 0; activeAudio = null; }
   document.getElementById('pEmpty').style.display = 'flex';
   document.getElementById('pContent').className = 'p-content';
   map.flyTo([20, 0], 3, { duration: 1.5 });
 };
+Listo
+Copia también ese texto completo y pégalo en js/app.js en GitHub. Haz Commit changes.
+
+Espera 30 segundos y abre en incógnito jesusgcht.github.io/musicsoftheworld.
+
+Lo que verás ahora:
+
+Foto del Teide en el hero de Canarias — imagen local, siempre funciona
+Foto real del timple al abrir el modal — imagen local
+Foto real de las chácaras — imagen local
+Reproductor de audio nativo del navegador con los MP3 del Gobierno de Canarias — sin YouTube, sin APIs, funciona siempre
+¿Lo actualizas?
+
+
+
