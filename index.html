@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="A musical journey around the world. Discover traditional music, instruments and rhythms from every corner of the planet."/>
+<meta name="keywords" content="world music, traditional music, folk music, instruments, travel, culture"/>
+<meta property="og:title" content="Musics of the World"/>
+<meta property="og:description" content="A musical journey around the world. Discover traditional music from every corner of the planet."/>
+<meta property="og:type" content="website"/>
+<title>Musics of the World — A Musical Journey</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- MODAL INSTRUMENTO -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div id="modalImgWrap" class="modal-img-wrap"></div>
+    <div class="modal-body">
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-origin" id="modalOrigin"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <div id="modalAudio"></div>
+    </div>
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<div class="shell">
+
+  <!-- MAPA -->
+  <div class="map-side">
+    <div class="brand">
+      <div class="brand-eye">Interactive Atlas</div>
+      <div class="brand-name">Musics of <em>the World</em></div>
+      <div class="brand-tagline">Discover traditional music, instruments and rhythms from every corner of the planet</div>
+    </div>
+    <div id="map"></div>
+  </div>
+
+  <!-- PANEL LATERAL -->
+  <div class="panel">
+
+    <!-- Estado vacío -->
+    <div class="p-empty" id="pEmpty">
+      <div class="p-empty-wave">
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+      </div>
+      <div class="p-empty-title">A musical<br>journey</div>
+      <div class="p-empty-sub">Click on any marker on the map or select a region below to start exploring</div>
+      <div class="region-list" id="regionList"></div>
+    </div>
+
+    <!-- Contenido de región -->
+    <div class="p-content" id="pContent">
+
+      <!-- Hero -->
+      <div class="p-hero">
+        <img class="p-hero-img" id="heroImg" src="" alt=""/>
+        <div class="p-hero-overlay">
+          <div class="p-hero-eye" id="heroEye"></div>
+          <div class="p-hero-name" id="heroName"></div>
+          <div class="p-hero-tagline" id="heroTagline"></div>
+        </div>
+        <div class="p-hero-credit">© Wikipedia · Wikimedia Commons</div>
+        <button style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);border:.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center" onclick="closePanel()">✕</button>
+      </div>
+
+      <!-- Descripción -->
+      <div class="p-section">
+        <div class="sec-label">Music & Culture</div>
+        <div class="p-description" id="regionDesc"></div>
+        <div class="travel-tip" id="travelTip" style="display:none">
+          <div class="travel-tip-icon">🎒</div>
+          <div class="travel-tip-text" id="travelTipText"></div>
+        </div>
+      </div>
+
+      <!-- Instrumentos -->
+      <div class="p-section" id="instruSection">
+        <div class="sec-label">Key instruments · click to learn more</div>
+        <div class="instru-row" id="instruRow"></div>
+      </div>
+
+      <!-- Géneros -->
+      <div class="p-section" style="padding-bottom:0;border-bottom:none">
+        <div class="sec-label">Musical genres</div>
+      </div>
+      <div id="genresContainer"></div>
+
+      <!-- Footer -->
+      <div class="p-footer">
+        <div class="p-footer-text">
+          Sources: Wikipedia · Wikimedia Commons ·
+          <a href="https://musicsoftheworld.com" target="_blank">musicsoftheworld.com</a>
+        </div>
+      </div>
+
+    </div><!-- /p-content -->
+  </div><!-- /panel -->
+</div><!-- /shell -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
