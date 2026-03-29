@@ -1,0 +1,12 @@
+ARCHIVOS QUE DEBES AÑADIR MANUALMENTE EN GITHUB:
+
+Carpeta img/ → sube estas 3 imágenes:
+  - canarias.jpg
+  - timple.jpg
+  - chacaras.jpg
+
+Carpeta audio/ → sube estos 2 audios:
+  - timple.mp3
+  - chacaras.mp3
+
+El código ya está configurado para buscarlos en esas carpetas.
